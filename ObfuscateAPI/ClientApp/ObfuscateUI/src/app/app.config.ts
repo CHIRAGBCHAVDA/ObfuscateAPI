@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient(),
     {
       provide: KEY_PASSPHRASE,
-      useValue: "chiragchavdasfirsteverencryptedapi"
+      useValue: "ENCRYPTION_PASSPHRASE"
     }
   ]
 };

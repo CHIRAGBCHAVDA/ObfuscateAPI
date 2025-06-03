@@ -5,7 +5,7 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class EncryptedHttpService {
-  private readonly key = CryptoJS.SHA256("chiragchavdasfirsteverencryptedapi");
+  private readonly key = CryptoJS.SHA256("ENCRYPTION_PASSPHRASE");
   private readonly baseUrl = 'https://localhost:7241/api/x';
 
   constructor(private http: HttpClient) {}
