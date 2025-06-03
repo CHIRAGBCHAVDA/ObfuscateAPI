@@ -1,0 +1,6 @@
+@ObfuscateAPI_HostAddress = http://localhost:5227
+
+GET {{ObfuscateAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

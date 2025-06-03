@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoJS Decryption Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>CryptoJS Decryption Tool</h1>
+        <p class="info-box">
+            <strong>Instructions:</strong><br>
+            This tool mimics your .NET `ObfuscationMiddleware` decryption logic.<br>
+            1. Paste the **URL-encoded Base64 ciphertext for the path** (e.g., `PRqtpCvHfQouH4yMhPLpmg%3D%3D`).<br>
+            2. Paste the **URL-encoded Base64 IV** (from the `?iv=` query parameter). This IV is used for BOTH path and payload.<br>
+            3. Paste the **raw Base64 ciphertext for the request payload** (from the request body).<br>
+            4. Click "Decrypt All".
+        </p>
+
+        <div class="form-group">
+            <label for="encryptedUrlPart">Encrypted URL Path Part (URL-encoded Base64):</label>
+            <input type="text" id="encryptedUrlPart" [(ngModel)]="url" placeholder="e.g., PRqtpCvHfQouH4yMhPLpmg%3D%3D">
+        </div>
+
+        <div class="form-group">
+            <label for="ivUrlEncoded">IV (from `?iv=` query parameter, URL-encoded Base64):</label>
+            <input type="text" id="ivUrlEncoded" [(ngModel)]="iv" placeholder="e.g., jW8PP4WAyPf63xnBluippA%3D%3D">
+        </div>
+
+        <div class="form-group">
+            <label for="encryptedPayloadBase64">Encrypted Request Payload (Raw Base64 from body):</label>
+            <textarea id="encryptedPayloadBase64" [(ngModel)]="payload" placeholder="e.g., tyMNcufA1GeK91c/1K6UbFJ3a5eiHiDQqMn5O5JAGPRSnrHREfNsH+xy5aZzqwZsQVQB66GzHeWhhcm/STnB1A=="></textarea>
+        </div>
+
+        <!-- <button id="decryptButton">Decrypt All</button> -->
+        <button (click)="decryptAll()">Decrypt All</button>
+
+        <div class="result-section">
+            <h2>Decryption Results</h2>
+            <!-- <div class="form-group">
+                <label>Derived AES Key (Hex):</label>
+                <div class="result-box" id="derivedKeyHex"></div>
+            </div> -->
+            <div class="form-group">
+                <label>Decrypted Endpoint Path:</label>
+                <div class="result-box" id="decryptedEndpoint">{{this.path}}</div>
+            </div>
+            <div class="form-group">
+                <label>Decrypted Request Payload:</label>
+                <div class="result-box" id="decryptedPayload">{{this.data | json}}</div>
+            </div>
+            <div class="form-group">
+                <label>Errors:</label>
+                <div class="result-box" id="errorMessages" style="color: red;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Define functions first, as they are used in onclick
+    
+window.test = function test() {
+        alert("test");
+    }
+window.decryptAll = function decryptAll() {
+        alert("hit");
+        const encryptedUrlPart = document.getElementById('encryptedUrlPart').value;
+        const ivUrlEncoded = document.getElementById('ivUrlEncoded').value;
+        const encryptedPayloadBase64 = document.getElementById('encryptedPayloadBase64').value;
+
+        const decryptedEndpointElem = document.getElementById('decryptedEndpoint');
+        const decryptedPayloadElem = document.getElementById('decryptedPayload');
+        const errorMessagesElem = document.getElementById('errorMessages');
+
+        decryptedEndpointElem.textContent = '';
+        decryptedPayloadElem.textContent = '';
+        errorMessagesElem.textContent = '';
+
+        // Check if DERIVED_KEY_WORD_ARRAY is available, it should be set in DOMContentLoaded
+        if (typeof DERIVED_KEY_WORD_ARRAY === 'undefined') {
+            errorMessagesElem.textContent = "Error: Encryption key not initialized. Please refresh.";
+            console.error("DERIVED_KEY_WORD_ARRAY is undefined. Script execution likely failed.");
+            return;
+        }
+
+        if (!encryptedUrlPart || !ivUrlEncoded) {
+            errorMessagesElem.textContent = "Please fill in all input fields.";
+            return;
+        }
+
+        let ivWordArray;
+        try {
+            const decodedIvBase64 = decodeURIComponent(ivUrlEncoded);
+            ivWordArray = CryptoJS.enc.Base64.parse(decodedIvBase64);
+        } catch (e) {
+            errorMessagesElem.textContent += `Error processing IV: ${e.message || e}\n`;
+            console.error("IV Processing Error:", e);
+            return;
+        }
+
+        // --- Decrypt Endpoint Path ---
+        try {
+            const decodedUrlPartBase64 = decodeURIComponent(encryptedUrlPart);
+            const pathCiphertextWordArray = CryptoJS.enc.Base64.parse(decodedUrlPartBase64);
+
+            const decryptedPath = CryptoJS.AES.decrypt(
+                { ciphertext: pathCiphertextWordArray },
+                DERIVED_KEY_WORD_ARRAY,
+                {
+                    iv: ivWordArray,
+                    mode: AES_MODE,
+                    padding: AES_PADDING
+                }
+            );
+            decryptedEndpointElem.textContent = decryptedPath.toString(CryptoJS.enc.Utf8);
+        } catch (e) {
+            errorMessagesElem.textContent += `Error decrypting endpoint: ${e.message || e}\n`;
+            console.error("Endpoint Decryption Error:", e);
+        }
+
+        // --- Decrypt Request Payload ---
+        try {
+            const payloadCiphertextWordArray = CryptoJS.enc.Base64.parse(encryptedPayloadBase64);
+
+            const decryptedPayload = CryptoJS.AES.decrypt(
+                { ciphertext: payloadCiphertextWordArray },
+                DERIVED_KEY_WORD_ARRAY,
+                {
+                    iv: ivWordArray,
+                    mode: AES_MODE,
+                    padding: AES_PADDING
+                }
+            );
+            decryptedPayloadElem.textContent = decryptedPayload.toString(CryptoJS.enc.Utf8);
+        } catch (e) {
+            errorMessagesElem.textContent += `Error decrypting payload: ${e.message || e}\n`;
+            console.error("Payload Decryption Error:", e);
+        }
+    }
+
+
+    // Declare these variables globally but initialize them *after* DOM content is loaded
+    // This ensures CryptoJS is ready.
+    let ENCRYPTION_PASSPHRASE;
+    let AES_MODE;
+    let AES_PADDING;
+    let DERIVED_KEY_WORD_ARRAY; // Declare it with 'let' so it can be assigned later
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('decryptButton').addEventListener('click', decryptAll);
+        // --- Configuration (MUST match your Angular app's encryption and .NET decryption) ---
+        ENCRYPTION_PASSPHRASE = "chiragchavdasfirsteverencryptedapi";
+        AES_MODE = CryptoJS.mode.CBC;
+        AES_PADDING = CryptoJS.pad.Pkcs7;
+
+        // Derived Key (calculated once, same as .NET's SHA256.HashData)
+        // This calculation MUST happen AFTER CryptoJS is guaranteed to be loaded.
+        DERIVED_KEY_WORD_ARRAY = CryptoJS.SHA256(ENCRYPTION_PASSPHRASE);
+
+        // Display the derived key for verification
+        document.getElementById('derivedKeyHex').textContent = CryptoJS.enc.Hex.stringify(DERIVED_KEY_WORD_ARRAY);
+    });
+</script>
+</body>
+</html>

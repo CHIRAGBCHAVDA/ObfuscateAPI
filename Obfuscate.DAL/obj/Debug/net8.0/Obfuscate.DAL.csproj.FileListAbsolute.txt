@@ -1,0 +1,16 @@
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\bin\Debug\net8.0\Obfuscate.DAL.deps.json
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\bin\Debug\net8.0\Obfuscate.DAL.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\bin\Debug\net8.0\Obfuscate.DAL.pdb
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\bin\Debug\net8.0\Obfuscate.Models.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\bin\Debug\net8.0\Obfuscate.Models.pdb
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.csproj.AssemblyReference.cache
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.AssemblyInfoInputs.cache
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.AssemblyInfo.cs
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.csproj.CoreCompileInputs.cache
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.sourcelink.json
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscat.3E4CB356.Up2Date
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\refint\Obfuscate.DAL.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\Obfuscate.DAL.pdb
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.DAL\obj\Debug\net8.0\ref\Obfuscate.DAL.dll

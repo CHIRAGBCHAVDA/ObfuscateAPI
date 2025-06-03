@@ -1,0 +1,12 @@
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\bin\Debug\net8.0\Obfuscate.Models.deps.json
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\bin\Debug\net8.0\Obfuscate.Models.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\bin\Debug\net8.0\Obfuscate.Models.pdb
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.AssemblyInfoInputs.cache
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.AssemblyInfo.cs
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.csproj.CoreCompileInputs.cache
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.sourcelink.json
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\refint\Obfuscate.Models.dll
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\Obfuscate.Models.pdb
+D:\ChiragChavda\PERSONAL\ObfuscateAPI\Obfuscate.Models\obj\Debug\net8.0\ref\Obfuscate.Models.dll

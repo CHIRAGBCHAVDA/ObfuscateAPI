@@ -1,0 +1,62 @@
+<header class="bg-cyan">
+  <h2 class="text-center">{{title}}</h2>
+  <hr>
+</header>
+
+<div class="container">
+  <div class="row align-items-start justify-content-between">
+    <div class="col-md-6">
+      <h3>Users</h3>
+      <hr>
+      <ol >
+        <li *ngFor="let user of users">
+            <span class="d-flex justify-content-between">
+              <h5>{{user.name}}</h5>
+              <button class="btn btn-secondary" (click)="setFormValue(user.id)">Edit</button>
+            </span>
+          <ul>
+            <li>
+              Email: {{user.email}}
+            </li>
+            <li>
+              Age: {{user.age}}
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <button (click)="getUserThroughNPM()" class="btn btn-primary">Get User Data</button>
+    </div>
+    <div class="col-md-6 border-start ps-3">
+      <form [formGroup]="usersForm" class="mb-3">
+        <div class="form-group mb-3">
+          <label class="form-label" for="name">Name</label>
+          <input type="text" formControlName="name" class="form-control" />
+          <ng-template *ngIf="isSubmitted && f['name'].invalid">
+            <p class="text-danger" *ngIf="f['name'].errors?.['required']">Name is required.</p>
+          </ng-template>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input type="text" formControlName="email" class="form-control" />
+          <ng-template *ngIf="isSubmitted && f['email'].invalid">
+            <p class="text-danger" *ngIf="f['email'].errors?.['required']">Email is required.</p>
+            <p class="text-danger" *ngIf="f['email'].errors?.['email']">Email is not valid.</p>
+          </ng-template>
+        </div>
+         <div class="form-group mb-3">
+          <label class="form-label" for="age">Age</label>
+          <input type="text" formControlName="age" class="form-control" />
+        </div>
+      </form>
+      <div class="btn btn-primary" (click)="postUserThroughNPM()">Add User</div>
+    </div>
+  </div>
+  <hr>
+  <div class="form-check form-switch mb-3">
+  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="toggleIsShowDecryptor()" [checked]="isShowDecryptor">
+  <label class="form-check-label" for="flexSwitchCheckChecked">Show decryptor tool</label>
+</div>
+  <div *ngIf="isShowDecryptor">
+    <app-decryptor></app-decryptor>
+  </div>
+</div>
