@@ -39,7 +39,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<ObfuscationMiddleware>();
 app.UseRouting();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("MyCORS");
 app.UseAuthorization();
 app.MapControllers();
