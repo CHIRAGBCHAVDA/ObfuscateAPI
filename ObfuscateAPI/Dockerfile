@@ -1,8 +1,11 @@
-# Use the official .NET SDK image to build the application
-FROM mcr.microsoft.com/dotnet/sdk:8.0 
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet publish -c Release -o /app
 
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-
-COPY Publish/ ./
-
-ENTRYPOINT [ "dotnet", "ObfuscateAPI.dll" ]
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "ObfuscateAPI.dll"]
