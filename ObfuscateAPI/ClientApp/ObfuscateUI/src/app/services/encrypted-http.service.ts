@@ -6,7 +6,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class EncryptedHttpService {
   private readonly key = CryptoJS.SHA256("ENCRYPTION_PASSPHRASE");
-  private readonly baseUrl = 'https://localhost:7241/api/x';
+  private readonly baseUrl = 'https://obfuscateapi.onrender.com/api/x';
 
   constructor(private http: HttpClient) {}
 

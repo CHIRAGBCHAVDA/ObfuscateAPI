@@ -68,7 +68,7 @@ export class AppComponent {
     const actualApiPath = 'User/GetUsers';
     const encryptedPath = this.secureApiClientService.encryptApiPath(actualApiPath, iv);
 
-    const requestUrl = `https://localhost:7241/api/x/${encryptedPath}?iv=${ivUrlEncodedBase64}`;
+    const requestUrl = `https://obfuscateapi.onrender.com/api/x/${encryptedPath}?iv=${ivUrlEncodedBase64}`;
 
     this.http.get<Users[]>(requestUrl).subscribe((res: Users[]) => {
       this.users = res;
@@ -83,7 +83,7 @@ export class AppComponent {
     const actualApiPath = 'User/PostUser';
     const encryptedPath = this.secureApiClientService.encryptApiPath(actualApiPath, iv);
 
-    const requestUrl = `https://localhost:7241/api/x/${encryptedPath}?iv=${ivUrlEncodedBase64}`;
+    const requestUrl = `https://obfuscateapi.onrender.com/api/x/${encryptedPath}?iv=${ivUrlEncodedBase64}`;
 
     const usersData: Users = {
       name : this.usersForm.controls['name'].value,
