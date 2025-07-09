@@ -3,6 +3,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0
 
 WORKDIR /app
 
-COPY publish/ ./
+COPY Publish/ ./
 
 ENTRYPOINT [ "dotnet", "ObfuscateAPI.dll" ]
